@@ -62,6 +62,16 @@ class AppointmentController {
     }
 
     /**
+     * check provider_id = user_id
+     */
+
+    if (provider_id === req.userId) {
+      return res
+        .status(400)
+        .json({ error: 'Unable to schedule with yourself' });
+    }
+
+    /**
      * check for past dates
      */
     const hourStart = startOfHour(parseISO(date));
